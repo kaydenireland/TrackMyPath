@@ -30,15 +30,6 @@ namespace PathAPI
                 });
             });
 
-            //Enable cors
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll",
-                    builder => builder.AllowAnyOrigin()
-                                      .AllowAnyMethod()
-                                      .AllowAnyHeader());
-            });
-
             builder.Services.AddDbContext<TrackMyPathContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -50,8 +41,6 @@ namespace PathAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 
